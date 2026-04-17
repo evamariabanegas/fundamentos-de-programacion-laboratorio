@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int numero, digito;
+    int mayor = -1, menor = 9, contadorMax = 0;
+
+    cout << "Ingrese un numero entero positivo: ";
+    cin >> numero;
+
+    int temp = numero;
+
+    // Encontrar mayor y menor
+    while (temp > 0) {
+        digito = temp % 10;
+
+        if (digito > mayor) {
+            mayor = digito;
+        }
+
+        if (digito < menor) {
+            menor = digito;
+        }
+
+        temp /= 10;
+    }
+
+    // Contar cuántas veces aparece el mayor
+    temp = numero;
+    while (temp > 0) {
+        digito = temp % 10;
+
+        if (digito == mayor) {
+            contadorMax++;
+        }
+
+        temp /= 10;
+    }
+
+    cout << "Mayor consumo (GB): " << mayor << endl;
+    cout << "Menor consumo (GB): " << menor << endl;
+    cout << "Veces que se repite el mayor consumo: " << contadorMax << endl;
+
+    return 0;
+}

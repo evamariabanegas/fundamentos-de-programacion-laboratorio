@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+bool esPinValido(int pin) {
+    int digitos[4];
+    int i = 0;
+
+    // Verificar que tenga exactamente 4 dígitos
+    int temp = pin;
+    int contador = 0;
+
+    while (temp > 0) {
+        contador++;
+        temp /= 10;
+    }
+
+    if (contador != 4) {
+        return false;
+    }
+
+    // Guardar dígitos
+    temp = pin;
+    while (temp > 0) {
+        digitos[i] = temp % 10;
+        temp /= 10;
+        i++;
+    }
+
+    // Verificar que no haya dígitos consecutivos iguales
+    for (int j = 0; j < 3; j++) {
+        if (digitos[j] == digitos[j + 1]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main() {
+    int pin, intentos = 0;
+
+    do {
+        cout << "Ingrese PIN de 4 digitos: ";
+        cin >> pin;
+
+        if (esPinValido(pin)) {
+            cout << "PIN valido" << endl;
+            return 0;
+        } else {
+            cout << "PIN invalido" << endl;
+        }
+
+        intentos++;
+
+    } while (intentos < 3);
+
+    cout << "Cuenta bloqueada" << endl;
+
+    return 0;
+}

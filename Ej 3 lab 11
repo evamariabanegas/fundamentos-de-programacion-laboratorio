@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+
+// Prototipos
+void leerDatosRedondeo(double *r, int *n);
+double realizarRedondeo(double r, int n);
+void mostrarRedondeo(double res);
+
+int main() {
+    double R, resultado;
+    int n;
+
+    leerDatosRedondeo(&R, &n);
+    resultado = realizarRedondeo(R, n);
+    mostrarRedondeo(resultado);
+
+    return 0;
+}
+
+void leerDatosRedondeo(double *r, int *n) {
+    printf("Ingrese el numero real (R): ");
+    scanf("%lf", r);
+    printf("Ingrese la cantidad de decimales (n): ");
+    scanf("%d", n);
+}
+
+double realizarRedondeo(double r, int n) {
+    double factor = pow(10, n);
+    // round() redondea al entero mas cercano
+    return round(r * factor) / factor;
+}
+
+void mostrarRedondeo(double res) {
+    printf("El numero redondeado es: %f\n", res);
+}

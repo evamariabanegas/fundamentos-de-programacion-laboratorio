@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <string.h>
+
+// Prototipos
+void leerFecha(int *d, int *m, int *a);
+void LITERAL(int d, int m, int a, char *mesLiteral, int *anioCompleto);
+void mostrarFecha(int d, char *mesLiteral, int a);
+
+int main() {
+    int dia, mes, anio, anioC;
+    char nombreMes[20];
+
+    leerFecha(&dia, &mes, &anio);
+    LITERAL(dia, mes, anio, nombreMes, &anioC);
+    mostrarFecha(dia, nombreMes, anioC);
+
+    return 0;
+}
+
+void leerFecha(int *d, int *m, int *a) {
+    printf("Ingrese dia, mes y año (ej: 20 5 99): ");
+    scanf("%d %d %d", d, m, a);
+}
+
+void LITERAL(int d, int m, int a, char *mesLiteral, int *anioCompleto) {
+    char *meses[] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+                     "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
+    
+    if (m >= 1 && m <= 12) {
+        strcpy(mesLiteral, meses[m - 1]);
+    } else {
+        strcpy(mesLiteral, "Mes invalido");
+    }
+
+    // Transformar año (ej: 99 -> 1999)
+    if (a < 100) {
+        if (a > 25) *anioCompleto = 1900 + a; // Asunción de siglo
+        else *anioCompleto = 2000 + a;
+    } else {
+        *anioCompleto = a;
+    }
+}
+
+void mostrarFecha(int d, char *mesLiteral, int a) {
+    printf("%d de %s de %d\n", d, mesLiteral, a);
+}

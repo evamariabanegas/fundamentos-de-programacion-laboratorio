@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <math.h>
+
+// Prototipos de funciones
+void leerDatos(double *base, double *exponente);
+double POTEN(double x, double y);
+void mostrarResultado(double res);
+
+int main() {
+    double b, e, resultado;
+    
+    leerDatos(&b, &e);
+    resultado = POTEN(b, e);
+    mostrarResultado(resultado);
+    
+    return 0;
+}
+
+void leerDatos(double *base, double *exponente) {
+    printf("Ingrese la base: ");
+    scanf("%lf", base);
+    printf("Ingrese el exponente: ");
+    scanf("%lf", exponente);
+}
+
+double POTEN(double x, double y) {
+    return pow(x, y);
+}
+
+void mostrarResultado(double res) {
+    printf("El resultado de la potencia es: %.4f\n", res);
+}
